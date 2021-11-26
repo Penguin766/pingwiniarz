@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 def GetKernel():
     chk_kernel_mainline = []
     chk_kernel_stable = []
-    chk_kernel_longterm = []
+    chk_kernel_LTS = []
     page = request.urlopen(f'https://www.kernel.org/')
     soup_releases_table = BeautifulSoup(page, features="html.parser")
     releases_table = soup_releases_table.findAll('table', attrs={'id' : 'releases'})
@@ -20,4 +20,4 @@ def GetKernel():
         if row_entries[0].text == "longterm:":
             chk_kernel_longterm.append(row_entries[1].text)
 
-    return (chk_kernel_mainline, chk_kernel_stable, chk_kernel_longterm)
+    return (chk_kernel_mainline, chk_kernel_stable, chk_kernel_LTS)
